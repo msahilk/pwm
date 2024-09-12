@@ -19,3 +19,5 @@ pwm-frontend/out/make/squirrel.windows/x64/pwm_frontend-1.0.0-full.nupkg filter=
 # Treat TypeScript files as JavaScript (if needed)
 *.ts linguist-language=JavaScript
 *.tsx linguist-language=JavaScript
+
+*.html linguist-detectable=false

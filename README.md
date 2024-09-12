@@ -2,7 +2,7 @@
 
 <b>A fully-functional password manager written in Java Spring Boot and Electron.js / React!</b>
 
-[alt](https://i.imgur.com/eLMt5eD.gif)
+<img src='https://i.imgur.com/eLMt5eD.gif'/>
 
 User data is tracked in an H2 SQL Database which includes:
 <ul>
@@ -14,7 +14,7 @@ User data is tracked in an H2 SQL Database which includes:
 
 Users can copy, add, delete, and update passwords. </br>
 
-[alt](https://i.imgur.com/gwR0Opr.gif)
+<img src='https://i.imgur.com/gwR0Opr.gif'/>
 
 Passwords are encrypted using <b>AES-256</b> encryption. Default key and salt values are: </br>
 "YOUR_SECRET_KEY" and "YOUR_SALT"

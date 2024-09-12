@@ -6,3 +6,16 @@ Setup.exe filter=lfs diff=lfs merge=lfs -text
 pwm-frontend/out/make/squirrel.windows/x64/pwm-frontend-1.0.0[[:space:]]Setup.exe filter=lfs diff=lfs merge=lfs -text
 pwm-frontend/out/make/squirrel.windows/x64/pwm_frontend-1.0.0-full.nupkg filter=lfs diff=lfs merge=lfs -text
 .exe filter=lfs diff=lfs merge=lfs -text
+
+# Treat all .java files as Java code
+*.java linguist-language=Java
+
+# Treat all .js files as JavaScript code
+*.js linguist-language=JavaScript
+
+# Treat all .jsx files as JavaScript (if using React or similar)
+*.jsx linguist-language=JavaScript
+
+# Treat TypeScript files as JavaScript (if needed)
+*.ts linguist-language=JavaScript
+*.tsx linguist-language=JavaScript

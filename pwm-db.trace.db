@@ -1,0 +1,3 @@
+2024-09-12 00:01:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PASSWORDS" not found; SQL statement:
+SELECT * FROM PASSWORDS [42102-197]

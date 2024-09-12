@@ -1,0 +1,62 @@
+"use strict";
+const electron = require("electron");
+const path = require("path");
+const utils = require("@electron-toolkit/utils");
+const node_child_process = require("node:child_process");
+const icon = path.join(__dirname, "../../resources/icon.png");
+function createWindow() {
+  const mainWindow = new electron.BrowserWindow({
+    width: 1280,
+    height: 720,
+    show: false,
+    autoHideMenuBar: true,
+    ...process.platform === "linux" ? { icon } : {},
+    webPreferences: {
+      preload: path.join(__dirname, "../preload/index.js"),
+      sandbox: false
+    },
+    resizable: false
+  });
+  mainWindow.on("ready-to-show", () => {
+    mainWindow.show();
+  });
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    electron.shell.openExternal(details.url);
+    return { action: "deny" };
+  });
+  if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"]) {
+    mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
+  } else {
+    mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
+  }
+}
+electron.app.whenReady().then(() => {
+  utils.electronApp.setAppUserModelId("com.electron");
+  electron.app.on("browser-window-created", (_, window) => {
+    utils.optimizer.watchWindowShortcuts(window);
+  });
+  electron.ipcMain.on("ping", () => console.log("pong"));
+  runJarFile();
+  createWindow();
+  electron.app.on("activate", function() {
+    if (electron.BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+});
+electron.app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    electron.app.quit();
+  }
+});
+function runJarFile() {
+  const jarPath = path.join(__dirname, "/target/pwm-0.0.1-SNAPSHOT.jar");
+  const javaProcess = node_child_process.spawn("java", ["-jar", jarPath]);
+  javaProcess.stdout.on("data", (data) => {
+    console.log(`stdout: ${data}`);
+  });
+  javaProcess.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
+  });
+  javaProcess.on("close", (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
+}

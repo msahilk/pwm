@@ -28,7 +28,7 @@ Run the pwm-frontend.exe executable in \pwm-frontend\out\pwm-frontend-win32-x64
 
 Clone the repo </br>
 Open the project in your Java IDE of choosing </br>
-Set your key and salt in src/main/java/pwn/DBConnect.java </br>
+Set your key and salt in src/main/java/pwn/DBConnect.java (You might want to do this with environment variables!) </br>
 Package the project into .jar with Maven and move the jar file to \pwm-frontend\out\pwm-frontend-win32-x64\resources\target </br>
 Move both .db files from the root directory to \pwm-frontend\out\pwm-frontend-win32-x64\resources </br>
 Run pwm-frontend.exe!

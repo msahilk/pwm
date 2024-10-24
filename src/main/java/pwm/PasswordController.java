@@ -32,7 +32,7 @@ public class PasswordController {
 
         // Check if the password is found
         // Check if the password is found and properly decoded
-            return ResponseEntity.ok(password);  // Return 200 OK with the password as a stri// Return 400 Bad Request with the error message
+            return ResponseEntity.ok(password);  // Return 200 OK with the password as a string// Return 400 Bad Request with the error message
         }
 
     @DeleteMapping("/password")
@@ -40,7 +40,7 @@ public class PasswordController {
             @RequestParam("website") String website,
             @RequestParam("username") String username) {
 
-        boolean isDeleted = DBConnect.deletePassword(website, username); // Implement this method to delete the password from your database
+        boolean isDeleted = DBConnect.deletePassword(website, username); 
         if (isDeleted) {
             return ResponseEntity.ok("Password deleted successfully");
         } else {
@@ -56,7 +56,7 @@ public class PasswordController {
 
         Password pw = new Password(website,username,password);
 
-        String resp = DBConnect.addPassword(pw); // Implement this method to delete the password from your databas
+        String resp = DBConnect.addPassword(pw); 
         return ResponseEntity.ok(resp);
     }
 }
